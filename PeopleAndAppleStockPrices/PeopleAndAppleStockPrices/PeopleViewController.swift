@@ -11,11 +11,15 @@ import UIKit
 class PeopleViewController: UIViewController {
 
     var contact = [resultWrapper]()
-    var sortedContacts = [resultWrapper]()
     
+    var sortedContacts = [resultWrapper](){
+        didSet {
+            DispatchQueue.main.async {
+                self.peopleTableView.reloadData()
+            }
+        }
+    }
     
-    
- 
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var peopleTableView: UITableView!
@@ -24,9 +28,9 @@ class PeopleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         peopleTableView.dataSource = self
+        searchBar.delegate = self
         loadData()
-       
-    }
+}
     
     func loadData() {
         if let path = Bundle.main.path(forResource: "userinfo", ofType: "json") {
@@ -39,12 +43,9 @@ class PeopleViewController: UIViewController {
                 
             } catch {
                 print("error")
+                }
             }
         }
-    }
-    
-
-    
     }
 }
 extension PeopleViewController: UITableViewDataSource {
@@ -56,9 +57,20 @@ extension PeopleViewController: UITableViewDataSource {
         let cell = peopleTableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath )
         let person = sortedContacts[indexPath.row]
         cell.textLabel?.text = person.name.fullName
-        cell.detailTextLabel?.text = person.location.city
+        cell.detailTextLabel?.text = person.location.state.capitalized
         
         return cell
     }
 }
 
+extension PeopleViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+         searchBar.resignFirstResponder()
+        guard let searchName = searchBar.text else { return }
+        sortedContacts = sortedContacts.filter { $0.name.fullName.contains(searchName)
+            
+            
+        }
+        
+    }
+}

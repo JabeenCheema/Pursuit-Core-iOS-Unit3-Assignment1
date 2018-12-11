@@ -25,7 +25,7 @@ struct nameWrapper: Codable {
     let first: String
     let last: String
     
-    public var fullName: String {     // before this i only had the first name showing
+    public var fullName: String {     // before this i only had the first name showing, if i code this in the model I don't need to do it in the view controller and detailed view controller 
         return first.capitalized + " " + last.capitalized
     }
 }

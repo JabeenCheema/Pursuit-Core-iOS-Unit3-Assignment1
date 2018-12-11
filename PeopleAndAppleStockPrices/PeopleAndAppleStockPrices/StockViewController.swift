@@ -29,30 +29,16 @@ class StockViewController: UIViewController {
             print("there are \(stockPrices.count) prices")
         }
         
-        
-    
-    
-    
-    
-    
-    
     }
-    
-    
 }
 
 extension StockViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return stockPrices.count 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath)
-        
-        
-        
         return cell
     }
-    
-    
 }

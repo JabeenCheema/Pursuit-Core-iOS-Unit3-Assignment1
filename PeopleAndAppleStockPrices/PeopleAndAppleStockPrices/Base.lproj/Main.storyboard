@@ -21,13 +21,32 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StockPriceCell" id="haA-u6-WHG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StockPriceCell" textLabel="WbL-3i-lGs" detailTextLabel="6Yj-bu-cfo" style="IBUITableViewCellStyleValue1" id="haA-u6-WHG">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="haA-u6-WHG" id="NSd-fn-0JS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WbL-3i-lGs">
+                                                    <rect key="frame" x="15" y="11.999999999999998" width="36" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Open Price " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Yj-bu-cfo">
+                                                    <rect key="frame" x="270.66666666666669" y="11.999999999999998" width="89.333333333333329" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ZiB-gg-Yg2" kind="show" id="Hhl-au-VTR"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -49,6 +68,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xaR-S6-RVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1336.8" y="369.26536731634184"/>
+        </scene>
+        <!--Stocks Detailed View Controller-->
+        <scene sceneID="hib-wt-uWf">
+            <objects>
+                <viewController id="ZiB-gg-Yg2" customClass="StocksDetailedViewController" customModule="PeopleAndAppleStockPrices" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2cI-nd-FdZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="vZt-J8-qHN"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mzX-Vl-k66" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2326" y="369"/>
         </scene>
         <!--People View Controller-->
         <scene sceneID="VbL-Te-GwA">
@@ -89,6 +123,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="CfP-2n-AdK" kind="show" id="uZ1-tU-XSx"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -115,6 +152,67 @@
             </objects>
             <point key="canvasLocation" x="1336.8" y="-295.50224887556226"/>
         </scene>
+        <!--Detailed People View Controller-->
+        <scene sceneID="A3j-gj-16K">
+            <objects>
+                <viewController id="CfP-2n-AdK" customClass="DetailedPeopleViewController" customModule="PeopleAndAppleStockPrices" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u4w-SO-eMG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RFR-zJ-Qol">
+                                <rect key="frame" x="50" y="148" width="275" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="UYe-bJ-gQn"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5H-UV-7wO">
+                                <rect key="frame" x="11" y="519" width="353" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="niJ-C4-Kav">
+                                <rect key="frame" x="11" y="570" width="353" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaZ-h1-O5z">
+                                <rect key="frame" x="11" y="468" width="353" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jhi-VH-EbV" firstAttribute="trailing" secondItem="RFR-zJ-Qol" secondAttribute="trailing" constant="50" id="ABQ-Rn-vjI"/>
+                            <constraint firstItem="niJ-C4-Kav" firstAttribute="top" secondItem="Q5H-UV-7wO" secondAttribute="bottom" constant="30" id="BDh-Rx-hvg"/>
+                            <constraint firstItem="Q5H-UV-7wO" firstAttribute="leading" secondItem="jhi-VH-EbV" secondAttribute="leading" constant="11" id="BFo-Vm-DgL"/>
+                            <constraint firstItem="jhi-VH-EbV" firstAttribute="trailing" secondItem="CaZ-h1-O5z" secondAttribute="trailing" constant="11" id="H9f-ig-C9F"/>
+                            <constraint firstItem="RFR-zJ-Qol" firstAttribute="top" secondItem="jhi-VH-EbV" secondAttribute="top" constant="60" id="NEW-JL-2BT"/>
+                            <constraint firstItem="CaZ-h1-O5z" firstAttribute="leading" secondItem="jhi-VH-EbV" secondAttribute="leading" constant="11" id="NhZ-63-8Wc"/>
+                            <constraint firstItem="CaZ-h1-O5z" firstAttribute="top" secondItem="RFR-zJ-Qol" secondAttribute="bottom" constant="70" id="Trn-Jf-Ra2"/>
+                            <constraint firstItem="jhi-VH-EbV" firstAttribute="trailing" secondItem="Q5H-UV-7wO" secondAttribute="trailing" constant="11" id="b6i-Hw-kvX"/>
+                            <constraint firstItem="niJ-C4-Kav" firstAttribute="leading" secondItem="jhi-VH-EbV" secondAttribute="leading" constant="11" id="dsr-I5-jkf"/>
+                            <constraint firstItem="RFR-zJ-Qol" firstAttribute="leading" secondItem="jhi-VH-EbV" secondAttribute="leading" constant="50" id="j2v-Rk-Itv"/>
+                            <constraint firstItem="Q5H-UV-7wO" firstAttribute="top" secondItem="CaZ-h1-O5z" secondAttribute="bottom" constant="30" id="mDk-Az-owK"/>
+                            <constraint firstItem="jhi-VH-EbV" firstAttribute="trailing" secondItem="niJ-C4-Kav" secondAttribute="trailing" constant="11" id="vU3-cG-DfR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jhi-VH-EbV"/>
+                    </view>
+                    <connections>
+                        <outlet property="personEmail" destination="Q5H-UV-7wO" id="N1b-vK-RPV"/>
+                        <outlet property="personImage" destination="RFR-zJ-Qol" id="ty5-4c-Uir"/>
+                        <outlet property="personLocation" destination="niJ-C4-Kav" id="M9L-5a-Kz2"/>
+                        <outlet property="personName" destination="CaZ-h1-O5z" id="lei-xu-c5l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ikK-2n-o4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2325.5999999999999" y="-296.30541871921184"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ecs-A2-YAN">
             <objects>
@@ -133,11 +231,11 @@
             </objects>
             <point key="canvasLocation" x="-553" y="38"/>
         </scene>
-        <!--Item 1-->
+        <!--Contacts-->
         <scene sceneID="dKh-kY-bWB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HlW-cD-cwh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="FKS-lQ-UDc"/>
+                    <tabBarItem key="tabBarItem" title="Contacts" id="FKS-lQ-UDc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Iq-wG-H03">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -152,11 +250,11 @@
             </objects>
             <point key="canvasLocation" x="397.60000000000002" y="-295.50224887556226"/>
         </scene>
-        <!--Item 2-->
+        <!--Stocks-->
         <scene sceneID="CUh-KP-4k0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EI2-XC-9BP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="V61-pb-j5M"/>
+                    <tabBarItem key="tabBarItem" title="Stocks" id="V61-pb-j5M"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wy0-Yb-A5k">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>

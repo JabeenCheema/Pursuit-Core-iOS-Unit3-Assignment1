@@ -10,7 +10,7 @@ import UIKit
 
 class PeopleViewController: UIViewController {
 
-    var contact = [resultWrapper]()
+   var contact = [resultWrapper]()
     
     var sortedContacts = [resultWrapper](){
         didSet {
@@ -24,12 +24,19 @@ class PeopleViewController: UIViewController {
     
     @IBOutlet weak var peopleTableView: UITableView!
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let contactIndexpath = peopleTableView.indexPathForSelectedRow,
+            let contactDetails = segue.destination as? DetailedPeopleViewController else { return }
+            let contact = sortedContacts[contactIndexpath.row]
+            contactDetails.personcontactDetails = contact
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         peopleTableView.dataSource = self
         searchBar.delegate = self
         loadData()
+        title = "Contacts"
 }
     
     func loadData() {
@@ -67,10 +74,7 @@ extension PeopleViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
          searchBar.resignFirstResponder()
         guard let searchName = searchBar.text else { return }
-        sortedContacts = sortedContacts.filter { $0.name.fullName.contains(searchName)
-            
-            
-        }
+        sortedContacts = sortedContacts.filter { $0.name.fullName.contains(searchName)}
         
     }
 }

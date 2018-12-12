@@ -21,7 +21,8 @@ class StockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        stocksTableView.dataSource = self 
+        stocksTableView.dataSource = self
+        title = "Stocks"
         
         
         if let prices = StockPriceParser.getStocks() {
@@ -38,7 +39,11 @@ extension StockViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StockPriceCell", for: indexPath)
+        let stock = stockPrices[indexPath.row]
+        cell.
+        
+        
         return cell
     }
 }

@@ -38,9 +38,9 @@ class DetailedPeopleViewController: UIViewController {
     }
 
     func updateContactInfo() {
-        personName.text = personcontactDetails.name.fullName
+        personName.text = personcontactDetails.name.fullName.capitalized
         personEmail.text = personcontactDetails.email
-        personLocation.text = personcontactDetails.location.city
+        personLocation.text = personcontactDetails.location.city.capitalized
     }
 
 

@@ -53,6 +53,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4523CDE621C1B48000D0120F /* Controller  */ = {
+			isa = PBXGroup;
+			children = (
+				4523CDB921C09C7400D0120F /* PeopleParser.swift */,
+				456B65F821BF384A00160100 /* PeopleViewController.swift */,
+				4523CDB721C0857700D0120F /* DetailedPeopleViewController.swift */,
+				456B65F421BF22A400160100 /* StockPriceParser.swift */,
+				577E5BED21BA8BA10083EB97 /* StockViewController.swift */,
+				4523CDBB21C09EEF00D0120F /* StocksDetailedViewController.swift */,
+			);
+			path = "Controller ";
+			sourceTree = "<group>";
+		};
+		4523CDE721C1B51600D0120F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				456B65F621BF31BD00160100 /* PeopleInfo.swift */,
+				456B65F221BF213300160100 /* StockPrice.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4523CDE821C1B55D00D0120F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				577E5BEF21BA8BA10083EB97 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		577E5BDF21BA8BA10083EB97 = {
 			isa = PBXGroup;
 			children = (
@@ -72,15 +102,9 @@
 		577E5BEA21BA8BA10083EB97 /* PeopleAndAppleStockPrices */ = {
 			isa = PBXGroup;
 			children = (
-				456B65F621BF31BD00160100 /* PeopleInfo.swift */,
-				456B65F821BF384A00160100 /* PeopleViewController.swift */,
-				4523CDB921C09C7400D0120F /* PeopleParser.swift */,
-				4523CDB721C0857700D0120F /* DetailedPeopleViewController.swift */,
-				456B65F221BF213300160100 /* StockPrice.swift */,
-				577E5BED21BA8BA10083EB97 /* StockViewController.swift */,
-				456B65F421BF22A400160100 /* StockPriceParser.swift */,
-				4523CDBB21C09EEF00D0120F /* StocksDetailedViewController.swift */,
-				577E5BEF21BA8BA10083EB97 /* Main.storyboard */,
+				4523CDE721C1B51600D0120F /* Model */,
+				4523CDE621C1B48000D0120F /* Controller  */,
+				4523CDE821C1B55D00D0120F /* View */,
 				577E5BFD21BA8BE20083EB97 /* Supporting Files */,
 				577E5BF721BA8BA20083EB97 /* Info.plist */,
 			);

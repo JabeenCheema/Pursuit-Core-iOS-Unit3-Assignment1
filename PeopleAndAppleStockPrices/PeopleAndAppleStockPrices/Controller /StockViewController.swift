@@ -41,7 +41,8 @@ extension StockViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StockPriceCell", for: indexPath)
         let stock = stockPrices[indexPath.row]
-        cell.
+        cell.textLabel?.text = stock.date
+        cell.detailTextLabel?.text = "\(stock.open)"
         
         
         return cell

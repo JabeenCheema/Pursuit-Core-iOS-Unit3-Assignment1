@@ -14,14 +14,7 @@ class StockViewController: UIViewController {
     @IBOutlet weak var stocksTableView: UITableView!
     
     // needs to be a 2d array
-    private var stockPrices = [StockPrice](){
-        didSet {
-            DispatchQueue.main.async {
-                    self.stocksTableView.reloadData()
-            }
-        }
-    }
-    
+    private var stockPrices = [StockPrice]()    
     var stockYear = [""]
     var stockMonth = [""]
     

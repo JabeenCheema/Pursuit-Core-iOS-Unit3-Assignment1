@@ -27,6 +27,13 @@ class StocksDetailedViewController: UIViewController {
         stocksDate.text = perstockDetails.date
         stocksOpen.text = "\(perstockDetails.open)"
         stocksClose.text = "\(perstockDetails.close)"
+        if perstockDetails.close > perstockDetails.open {
+            view.backgroundColor = .green
+            stocksImage.image = UIImage.init(named: "thumbsUp")
+        } else {
+            view.backgroundColor = .red
+            stocksImage.image = UIImage.init(named: "thumbsDown")
+        }
        
     }
     

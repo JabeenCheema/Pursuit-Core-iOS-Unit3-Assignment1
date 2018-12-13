@@ -46,8 +46,7 @@ class PeopleViewController: UIViewController {
             do {
                 contact = try JSONDecoder().decode(UserInformation.self, from: data).results
                 sortedContacts = try JSONDecoder().decode(UserInformation.self, from: data).results
-                
-            } catch {
+                } catch {
                 print("error")
                 }
             }
@@ -68,6 +67,12 @@ extension PeopleViewController: UITableViewDataSource {
         
         return cell
     }
+
+    // my header func goes here 
+
+
+
+
 }
 
 extension PeopleViewController: UISearchBarDelegate {

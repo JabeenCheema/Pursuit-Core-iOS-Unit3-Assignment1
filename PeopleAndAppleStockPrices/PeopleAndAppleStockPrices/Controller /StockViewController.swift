@@ -14,7 +14,30 @@ class StockViewController: UIViewController {
     @IBOutlet weak var stocksTableView: UITableView!
     
     // needs to be a 2d array
-    private var stockPrices = [StockPrice]()
+    private var stockPrices = [StockPrice](){
+        didSet {
+            DispatchQueue.main.async {
+                    self.stocksTableView.reloadData()
+            }
+        }
+    }
+    
+    var stockYear = [""]
+    var stockMonth = [""]
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            guard let destination = segue.destination as? StocksDetailedViewController,
+                let cellSelected = stocksTableView.indexPathForSelectedRow else { return }
+        let userSelected = stockPrices[cellSelected.row]
+        destination.perstockDetails = userSelected
+//        guard let stockIndexpath = stocksTableView.indexPathForSelectedRow,
+//        let stockdetails = segue.destination as? StocksDetailedViewController else { return }
+//        let stockPrice = stockdetails[stockIndexpath.row]
+//        stockPr = stockPrice
+//
+        
+    }
+    
     
     
     

@@ -10,6 +10,10 @@ import UIKit
 
 class StocksDetailedViewController: UIViewController {
 
+    var perstockDetails: StockPrice!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StockPriceParser { //unwrappig so we guard let
+class StockPriceParser { //unwrapping so we guard let
     
     static func getStocks() -> [StockPrice]? {
         var stockPrices = [StockPrice]()

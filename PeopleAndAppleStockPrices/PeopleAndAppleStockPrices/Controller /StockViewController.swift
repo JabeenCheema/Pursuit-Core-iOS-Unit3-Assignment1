@@ -34,7 +34,7 @@ class StockViewController: UIViewController {
 //        let stockdetails = segue.destination as? StocksDetailedViewController else { return }
 //        let stockPrice = stockdetails[stockIndexpath.row]
 //        stockPr = stockPrice
-//
+
         
     }
     

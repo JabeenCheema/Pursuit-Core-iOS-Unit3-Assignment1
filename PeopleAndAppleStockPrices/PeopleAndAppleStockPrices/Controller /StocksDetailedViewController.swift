@@ -12,11 +12,21 @@ class StocksDetailedViewController: UIViewController {
 
     var perstockDetails: StockPrice!
     
+    @IBOutlet weak var stocksDate: UILabel!
+    
+    @IBOutlet weak var stocksImage: UIImageView!
+    
+    @IBOutlet weak var stocksOpen: UILabel!
+    
+    @IBOutlet weak var stocksClose: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        stocksDate.text = perstockDetails.date
+        stocksOpen.text = "\(perstockDetails.open)"
+        stocksClose.text = "\(perstockDetails.close)"
        
     }
     

@@ -18,6 +18,8 @@ class StockViewController: UIViewController {
     var stocksByYear = [[StockPrice]]()
     var stockMonth = [[StockPrice]]()
     
+    var sectionNames = [String]()
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             guard let destination = segue.destination as? StocksDetailedViewController,
                 let cellSelected = stocksTableView.indexPathForSelectedRow else { return }
@@ -30,15 +32,25 @@ class StockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        if let prices = StockPriceParser.getStocks() {
+//            stockPrices = prices
+//            print("there are \(stockPrices.count) prices")
+//        }
         stocksTableView.dataSource = self
         title = "Stocks"
         
-        
-        if let prices = StockPriceParser.getStocks() {
-            stockPrices = prices
-            print("there are \(stockPrices.count) prices")
+        loadData()
+    }
+    
+    func getSectionNames() {
+        for stock in stockPrices {
+            if !sectionNames.contains(stock.sectionName) { // if the section name does not have the section then add that section 
+                sectionNames.append(stock.sectionName)
+            }
         }
-        
+    }
+    
+    func yearAndMonth(){
         for yearNum in 2016...2018 {
             
             let yearStock = stockPrices.filter{(stock) -> Bool in
@@ -73,9 +85,27 @@ class StockViewController: UIViewController {
                     stockMonth.append(stockMonthArr)
                 }
             }
+    
+    }
+    }
+    func loadData() {
+        if let path = Bundle.main.path(forResource: "applstockinfo", ofType: "json") {
+            let url = URL.init(fileURLWithPath: path)
+            if let data = try? Data.init(contentsOf: url) {
+                do {
+                    let stocksArray = try JSONDecoder().decode([StockPrice].self, from: data)
+                    stockPrices = stocksArray.sorted(by: { (stockOne, stockTwo) -> Bool in
+                        return stockOne.date < stockTwo.date
+                    })
+                } catch {
+                    print(error)
+                }
+            }
         }
     }
 }
+
+
 extension StockViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

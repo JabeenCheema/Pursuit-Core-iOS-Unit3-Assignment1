@@ -81,18 +81,24 @@ class StockViewController: UIViewController {
 }
 extension StockViewController: UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return stockMonth.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "Stock"
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stockPrices.count 
     }
-}
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StockPriceCell", for: indexPath)
-        let stock = StockPrice[indexPath.row]
+        let stock = stockPrices[indexPath.row]
         cell.textLabel?.text = stock.date
         cell.detailTextLabel?.text = "\(stock.open)"
-        
-        
         return cell
     }
-
+}
 

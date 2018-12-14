@@ -14,9 +14,9 @@ class StockViewController: UIViewController {
     @IBOutlet weak var stocksTableView: UITableView!
     
     // needs to be a 2d array
-    private var stockPrices = [StockPrice]()    
-    var stockYear = [""]
-    var stockMonth = [""]
+    private var stockPrices = [StockPrice]()
+    var stocksByYear = [[StockPrice]]()
+    var stockMonth = [[StockPrice]]()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             guard let destination = segue.destination as? StocksDetailedViewController,
@@ -31,10 +31,6 @@ class StockViewController: UIViewController {
         
     }
     
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         stocksTableView.dataSource = self
@@ -46,7 +42,36 @@ class StockViewController: UIViewController {
             print("there are \(stockPrices.count) prices")
         }
         
+        for yearNum in 2016...2018 {
+            
+            let yearStock = stockPrices.filter{(stock) -> Bool in
+                
+                let dateSeparated = stock.date.components(separatedBy: "-")
+                let currentStockYear = dateSeparated[0]
+                
+                if Int(currentStockYear) == yearNum {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        stocksByYear.append(yearStock)
+        
     }
+
+        for arrYearStocks in stocksByYear {
+            for monthNum in 1...12 {
+                let stockMonthArr = arrYearStocks.filter { (stock) -> Bool in
+                    let dateSeparated = stock.date.components 
+                }
+            }
+        }
+    
+    
+    
+    
+    
+    
 }
 
 extension StockViewController: UITableViewDataSource {
@@ -63,4 +88,5 @@ extension StockViewController: UITableViewDataSource {
         
         return cell
     }
+}
 }

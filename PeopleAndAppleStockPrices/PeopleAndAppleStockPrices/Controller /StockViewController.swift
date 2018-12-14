@@ -62,31 +62,37 @@ class StockViewController: UIViewController {
         for arrYearStocks in stocksByYear {
             for monthNum in 1...12 {
                 let stockMonthArr = arrYearStocks.filter { (stock) -> Bool in
-                    let dateSeparated = stock.date.components 
+                    let dateSeparated = stock.date.components(separatedBy: "-")
+                    let currentStockMonth = dateSeparated[1]
+                    
+                    if Int(currentStockMonth) == monthNum  {
+                        return true
+                    } else {
+                        return false
+                    }
+                }
+            
+                if !stockMonthArr.isEmpty {
+                    stockMonth.append(stockMonthArr)
                 }
             }
         }
-    
-    
-    
-    
-    
-    
+    }
 }
-
 extension StockViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stockPrices.count 
     }
-    
+}
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StockPriceCell", for: indexPath)
-        let stock = stockPrices[indexPath.row]
+        let stock = StockPrice[indexPath.row]
         cell.textLabel?.text = stock.date
         cell.detailTextLabel?.text = "\(stock.open)"
         
         
         return cell
     }
-}
-}
+
+

@@ -21,10 +21,12 @@ class StockViewController: UIViewController {
     var sectionNames = [String]()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            guard let destination = segue.destination as? StocksDetailedViewController,
+            guard let detailedViewController = segue.destination as? StocksDetailedViewController,
                 let cellSelected = stocksTableView.indexPathForSelectedRow else { return }
-        let userSelected = stockPrices[cellSelected.row]
-        destination.perstockDetails = userSelected
+        let sectionStocks = self.stocksBySection(section: cellSelected.section)
+        let thisStock = sectionStocks[cellSelected.row]
+        detailedViewController.perstockDetails = thisStock
+       
 
 
         
@@ -37,17 +39,23 @@ class StockViewController: UIViewController {
 //            print("there are \(stockPrices.count) prices")
 //        }
         stocksTableView.dataSource = self
+        stocksTableView.delegate = self
         title = "Stocks"
         
         loadData()
+        getSectionNames()
     }
     
     func getSectionNames() {
         for stock in stockPrices {
-            if !sectionNames.contains(stock.sectionName) { // if the section name does not have the section then add that section 
+            if !sectionNames.contains(stock.sectionName) { // if the section name does not have the section then add that section
                 sectionNames.append(stock.sectionName)
             }
         }
+    }
+    
+    func stocksBySection(section: Int) -> [StockPrice] {
+        return stockPrices.filter ({$0.sectionName == sectionNames[section]})
     }
     
     func yearAndMonth(){
@@ -65,9 +73,9 @@ class StockViewController: UIViewController {
                 }
             }
         stocksByYear.append(yearStock)
-        
-    }
+}
 
+        
         for arrYearStocks in stocksByYear {
             for monthNum in 1...12 {
                 let stockMonthArr = arrYearStocks.filter { (stock) -> Bool in
@@ -85,9 +93,10 @@ class StockViewController: UIViewController {
                     stockMonth.append(stockMonthArr)
                 }
             }
+    }
+}
     
-    }
-    }
+    
     func loadData() {
         if let path = Bundle.main.path(forResource: "applstockinfo", ofType: "json") {
             let url = URL.init(fileURLWithPath: path)
@@ -106,23 +115,32 @@ class StockViewController: UIViewController {
 }
 
 
-extension StockViewController: UITableViewDataSource {
+extension StockViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return stockMonth.count
+        return sectionNames.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Stock"
+        let thisSection = sectionNames[section]
+        let stocksInThissection = stockPrices.filter({$0.sectionName == thisSection})
+        var sum = 0.0
+        for stock in stocksInThissection {
+            sum += stock.open
+        }
+        let average = sum / Double(stocksInThissection.count)
+        return sectionNames[section] + "     " + "Average \(String(format: "%.2f",average))"
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stockPrices.count 
+        return stocksBySection(section: section).count // this will determine your sections
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StockPriceCell", for: indexPath)
-        let stock = stockPrices[indexPath.row]
+        let stocksinthissection = stocksBySection(section: indexPath.section)
+        let stock = stocksinthissection[indexPath.row]
         cell.textLabel?.text = stock.date
         cell.detailTextLabel?.text = "\(stock.open)"
         cell.detailTextLabel?.text = "$" + String(format: "%.2f", stock.open)

@@ -23,10 +23,7 @@ class StockViewController: UIViewController {
                 let cellSelected = stocksTableView.indexPathForSelectedRow else { return }
         let userSelected = stockPrices[cellSelected.row]
         destination.perstockDetails = userSelected
-//        guard let stockIndexpath = stocksTableView.indexPathForSelectedRow,
-//        let stockdetails = segue.destination as? StocksDetailedViewController else { return }
-//        let stockPrice = stockdetails[stockIndexpath.row]
-//        stockPr = stockPrice
+
 
         
     }
@@ -98,6 +95,7 @@ extension StockViewController: UITableViewDataSource {
         let stock = stockPrices[indexPath.row]
         cell.textLabel?.text = stock.date
         cell.detailTextLabel?.text = "\(stock.open)"
+        cell.detailTextLabel?.text = "$" + String(format: "%.2f", stock.open)
         return cell
     }
 }
